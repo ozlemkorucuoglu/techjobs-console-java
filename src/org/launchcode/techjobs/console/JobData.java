@@ -76,7 +76,11 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            String aValueCap = aValue.toUpperCase();
+            String valueCap = value.toUpperCase();
+
+            //if (aValue.contains(value)) {
+            if (aValueCap.contains(valueCap)) {
                 jobs.add(row);
             }
         }
@@ -124,5 +128,31 @@ public class JobData {
             e.printStackTrace();
         }
     }
+
+    // My code stats
+
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> thisJob : allJobs) {
+
+            for (String thisValue : thisJob.values()) {
+                String thisValueCap = thisValue.toUpperCase();
+                String valueCap = value.toUpperCase();
+                //if (thisValue.contains(value)) {
+                if (thisValueCap.contains(valueCap)) {
+                    jobs.add(thisJob);
+                }
+            }
+        }
+
+        return jobs;
+    }
+    // My code ends
+
 
 }
